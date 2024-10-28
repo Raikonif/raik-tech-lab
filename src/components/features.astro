@@ -1,54 +1,53 @@
 ---
 // @ts-ignore
+import { icons } from "@iconify-json/bx/index.js";
 import { Icon } from "astro-icon/components";
 
 const features = [
   {
-    title: "Bring Your Own Framework",
+    title: "Sitios Web (Landing Pages)",
     description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "bx:bxs-briefcase",
+      "Sitios totalmente SEO Friendly para la indexación eficiente de tu negocio digital.",
+    icon: "bx:bx-grid-horizontal",
+    color: "bg-green-500"
   },
   {
-    title: "100% Static HTML, No JS",
+    title: "Aplicaciones y Sistemas Web",
     description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
+      "Para los emprendimientos que requieran de una mayor complejidad y desarrollo de sus sitios web y aplicaciones web personalizadas con el proposito que el cliente lo requiera.",
     icon: "bx:bxs-window-alt",
+    color: "bg-blue-500"
   },
   {
-    title: "On-Demand Components",
+    title: "SEO y rendimiento",
     description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page.  ",
-    icon: "bx:bxs-data",
+      "Mejoramiento, asesoramiento para la mejor eficiencia del SEO y la Exeperiencia de Usuario para el uso de la pagina o plataforma de tu negocio digital. Mapeo automatico del Sitio, Paginación, Colecciones y mas.",
+    icon: "bx:bx-bar-chart-alt",
+    color: "bg-red-500"
   },
   {
-    title: "Broad Integration",
+    title: "Correos Corporativos",
     description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any other npm packages.",
-    icon: "bx:bxs-bot",
+      "Correos corporativos para darle la relevancia y seriedad profesional a tu Emprendimiento Digital.",
+    icon: "bx:bx-box",
+    color: "bg-black"
   },
   {
-    title: "SEO Enabled",
+    title: "Proyectos MVP",
     description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication. It just works!",
-    icon: "bx:bxs-file-find",
-  },
-  {
-    title: "Community",
-    description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
-    icon: "bx:bxs-user",
+      "Creamos proyectos agiles para la su despliegue y retroalimentación rápida y real.",
+    icon: "bx:bx-store",
+    color: "bg-yellow-500"
   },
 ];
 ---
 
 <div class="mt-16 md:mt-0">
   <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    Everything you need to start a website
+    Soluciones profesionales personalizadas.
   </h2>
   <p class="text-lg mt-4 text-slate-600">
-    Astro comes batteries included. It takes the best parts of state-of-the-art
-    tools and adds its own innovations.
+    Brindamos servicios esenciales para el emprendimiento que requieras y como lo requieras.
   </p>
 </div>
 
@@ -56,8 +55,8 @@ const features = [
   {
     features.map((item) => (
       <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
-          <Icon class="text-white" name={item.icon} />
+        <div class={`${item.color} flex mt-1 rounded-full items-center justify-center p-2 w-8 h-8 md:h-16 md:w-16 shrink-0`}>
+          <Icon class="text-white md:h-10 md:w-10" name={item.icon} />
         </div>
         <div>
           <h3 class="font-semibold text-lg">{item.title}</h3>{" "}

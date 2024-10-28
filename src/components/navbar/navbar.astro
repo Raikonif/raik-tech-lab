@@ -6,36 +6,38 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
   {
-    title: "Features",
+    title: "Servicios Web",
     path: "#",
     children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
+      { title: "Sitios Web", path: "/" },
+      { title: "Sistemas y Aplicaciones Web", path: "#" },
+      { title: "Seo y Rendimiento", path: "#" },
+      { title: "Correo Corporativo", path: "/404" },
+      { title: "Proyectos MVP", path: "/404" },
     ],
   },
   {
-    title: "Pricing",
+    title: "Precios",
     path: "/pricing",
   },
   {
-    title: "About",
+    title: "Sobre Nosotros",
     path: "/about",
   },
   {
     title: "Blog",
+    badge: true,
     path: "/blog",
   },
   {
-    title: "Contact",
+    title: "Contáctanos",
     path: "/contact",
   },
-  {
-    title: "Pro Version",
-    badge: true,
-    path: "https://astroship-pro.web3templates.com/",
-  },
+  // {
+  //   title: "Asesoramiento",
+  //   badge: true,
+  //   path: "https://astroship-pro.web3templates.com/",
+  // },
 ];
 ---
 
@@ -44,8 +46,8 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
+          ><span class="font-bold text-slate-800">Raicode </span><span
+            class="text-slate-500">Essentials</span
           >
         </a>
         <div class="block lg:hidden">
@@ -73,7 +75,7 @@ const menuitems = [
                       <span> {item.title}</span>
                       {item.badge && (
                         <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
+                          Nuevo
                         </span>
                       )}
                     </a>
@@ -83,17 +85,17 @@ const menuitems = [
             ))
           }
         </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
+        <!-- <div class="lg:hidden flex items-center mt-3 gap-4">
           <Link href="#" style="muted" block size="md">Log in</Link>
           <Link href="#" size="md" block>Sign up</Link>
-        </div>
+        </div> -->
       </MenuItems>
     </Astronav>
-    <div>
+    <!-- <div>
       <div class="hidden lg:flex items-center gap-4">
         <a href="#">Log in</a>
         <Link href="#" size="md">Sign up</Link>
       </div>
-    </div>
+    </div> -->
   </header>
 </Container>
