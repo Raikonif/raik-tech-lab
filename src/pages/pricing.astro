@@ -6,8 +6,9 @@ import PricingCard from "@components/pricing.astro";
 
 const pricing = [
   {
-    name: "Personal",
-    price: "Free",
+    name: "Sitio web enfocado a Contenido",
+    from: "Desde",
+    price: "1000 Bs.",
     popular: false,
     features: [
       "Lifetime free",
@@ -18,14 +19,15 @@ const pricing = [
       "Community Support",
     ],
     button: {
-      text: "Get Started",
+      text: "Seleccionar",
       link: "/",
     },
   },
   {
-    name: "Startup",
+    name: "Aplicación o sistema web M.V.P.",
+    from: "Desde",
     price: {
-      monthly: "$19",
+      monthly: "2100 Bs.",
       annual: "$16",
       discount: "10%",
       original: "$24",
@@ -40,13 +42,14 @@ const pricing = [
       "Priority Support",
     ],
     button: {
-      text: "Get Started",
+      text: "Seleccionar",
       link: "#",
     },
   },
   {
-    name: "Enterprise",
-    price: "Custom",
+    name: "Automatización de procesos y asesoria",
+    from: ".",
+    price: "Personalizado",
     popular: false,
     features: [
       "All Pro Features",
@@ -57,7 +60,7 @@ const pricing = [
       "24/7 Phone Support",
     ],
     button: {
-      text: "Contact us",
+      text: "Contatáctanos",
       link: "/contact",
     },
   },
@@ -67,9 +70,9 @@ const pricing = [
 <Layout title="Pricing">
   <Container>
     <Sectionhead>
-      <Fragment slot="title">Pricing</Fragment>
+      <Fragment slot="title">Precios</Fragment>
       <Fragment slot="desc">
-        Simple & Predictable pricing. No Surprises.
+        Precios simples y predecible.
       </Fragment>
     </Sectionhead>
 

@@ -9,11 +9,11 @@ const menuitems = [
     title: "Servicios Web",
     path: "#",
     children: [
-      { title: "Sitios Web", path: "/" },
-      { title: "Sistemas y Aplicaciones Web", path: "#" },
-      { title: "Seo y Rendimiento", path: "#" },
-      { title: "Correo Corporativo", path: "/404" },
-      { title: "Proyectos MVP", path: "/404" },
+      { title: "Sitios Web", path: "/", icon: "bx:bx-grid-horizontal", color: "bg-green-500"},
+      { title: "Sistemas y Aplicaciones Web", path: "#", icon: "bx:bxs-window-alt", color: "bg-blue-500" },
+      { title: "Seo y Rendimiento", path: "#", icon: "bx:bx-bar-chart-alt", color: "bg-red-500" },
+      { title: "Correo Corporativo", path: "/404", icon: "bx:bx-box", color: "bg-black" },
+      { title: "Proyectos MVP", path: "/404", icon: "bx:bx-store", color: "bg-yellow-500" },
     ],
   },
   {
@@ -42,7 +42,7 @@ const menuitems = [
 ---
 
 <Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5 fixed left-0 right-0 px-6 py-2 top-0 w-full bg-slate-100/95 rounded-md z-20">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
