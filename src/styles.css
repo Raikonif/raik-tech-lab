@@ -1,3 +1,6 @@
+@config "../tailwind.config.mjs";
+@import "tailwindcss";
+
 @keyframes scroll {
   from {
     transform: translateX(100%);
@@ -9,4 +12,19 @@
 
 .animate-scroll {
   animation: scroll 10s linear infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 600ms ease-out both;
 }

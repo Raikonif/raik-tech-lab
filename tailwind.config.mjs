@@ -1,9 +1,8 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
-
-import animations from "@midudev/tailwind-animations";
-
-const defaultTheme = require("tailwindcss/defaultTheme");
-module.exports = {
+export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
@@ -17,5 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), animations],
+  plugins: [typography],
 };

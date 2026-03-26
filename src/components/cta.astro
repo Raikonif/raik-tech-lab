@@ -1,16 +1,17 @@
 ---
 import Link from "./ui/link.astro";
+import { ctaContent } from "@data/home";
 ---
 
 <div
   class="bg-black p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
   <h2 class="text-white text-4xl md:text-6xl tracking-tight">
-    Construye con nosotros.
+    {ctaContent.title}
   </h2>
   <p class="text-slate-400 mt-4 text-lg md:text-xl">
-    Creación aplicaciones y sitios eficientes y escalables.
+    {ctaContent.description}
   </p>
   <div class="flex mt-5">
-    <Link href="#" style="inverted">Comenzar</Link>
+    <Link href={ctaContent.action.href} style="inverted">{ctaContent.action.label}</Link>
   </div>
 </div>

@@ -1,0 +1,61 @@
+export const pricingPlans = [
+  {
+    name: "Sitio web enfocado a Contenido",
+    from: "Desde",
+    price: "1000 Bs.",
+    popular: false,
+    features: [
+      "Lifetime free",
+      "Up to 3 users",
+      "Unlimited Pages",
+      "Astro Sub domain",
+      "Basic Integrations",
+      "Community Support",
+    ],
+    button: {
+      text: "Seleccionar",
+      link: "/",
+    },
+  },
+  {
+    name: "Aplicación o sistema web M.V.P.",
+    from: "Desde",
+    price: {
+      monthly: "2100 Bs.",
+      annual: "$16",
+      discount: "10%",
+      original: "$24",
+    },
+    popular: true,
+    features: [
+      "All Free Features",
+      "Up to 20 users",
+      "20 Custom domains",
+      "Unlimited Collaborators",
+      "Advanced Integrations",
+      "Priority Support",
+    ],
+    button: {
+      text: "Seleccionar",
+      link: "#",
+    },
+  },
+  {
+    name: "Automatización de procesos y asesoria",
+    from: ".",
+    price: "Personalizado",
+    popular: false,
+    features: [
+      "All Pro Features",
+      "Unlimited Custom domains",
+      "99.99% Uptime SLA",
+      "SAML & SSO Integration",
+      "Dedicated Account Manager",
+      "24/7 Phone Support",
+    ],
+    button: {
+      text: "Contatáctanos",
+      link: "/contact",
+    },
+  },
+] as const;

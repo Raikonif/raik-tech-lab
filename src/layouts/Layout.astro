@@ -2,8 +2,10 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
+import { siteConfig } from "@data/site";
+import favicon from "@assets/simple-fox-logo.png";
 import "@fontsource-variable/inter/index.css";
-import '@fontsource-variable/bricolage-grotesque';
+import "@fontsource-variable/bricolage-grotesque/index.css";
 import "../styles.css"
 
 
@@ -22,8 +24,8 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Raicode Essentials"
-  : "Raicode Essentials";
+  ? title + " | " + siteConfig.metadata.titleSuffix
+  : siteConfig.metadata.titleSuffix;
 ---
 
 <!DOCTYPE html>
@@ -31,28 +33,28 @@ const makeTitle = title
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="../assets/simple-fox-logo.png" />
+    <link rel="icon" type="image/png" href={favicon.src} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Desarrollo de Sitios, Sistemas y Aplicaciones Web."
+      description={siteConfig.metadata.description}
       canonical={canonicalURL}
       twitter={{
-        creator: "@raikonif",
-        site: "@raikonif",
+        creator: siteConfig.social.twitterHandle,
+        site: siteConfig.social.twitterHandle,
         card: "summary_large_image",
       }}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Raicode - Web Development Services`,
+          title: siteConfig.metadata.openGraphTitle,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Raicode Homepage Screenshot",
+          alt: siteConfig.metadata.openGraphImageAlt,
         },
       }}
     />

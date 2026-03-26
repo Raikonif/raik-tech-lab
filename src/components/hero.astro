@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import heroImage from "assets/hero-alt2.png";
 import Link from "@components/ui/link.astro";
+import { heroContent } from "@data/home";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -20,31 +21,30 @@ import { Icon } from "astro-icon/components";
   <div>
     <h1
       class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Desarrollo de Sitios y Aplicaciones Web a Personalizado
+      {heroContent.title}
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Utilizamos las tecnologias mas modernas para el desarrollo del producto.<wbr /> para la mejor experiencia del usuario, procurando el SEO y plasmando la marca del producto en el diseño. Asesorandonte en todo lo necesario para hacer despegar tu emprendimiento Web al siguiente nivel.
+      {heroContent.description}
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
-        href="#"
-        href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
+        href={heroContent.primaryCta.href}
         target="_blank"
         class="flex gap-1 items-center justify-center"
         rel="noopener">
-        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
+        <Icon class="text-white w-5 h-5" name={heroContent.primaryCta.icon} />
 
-         Descargar Catálogo
+         {heroContent.primaryCta.label}
       </Link>
       <Link
         size="lg"
         style="outline"
         rel="noopener"
-        href="https://github.com/surjithctly/astroship"
+        href={heroContent.secondaryCta.href}
         class="flex gap-1 items-center justify-center"
         target="_blank">
-        <Icon class="text-black w-4 h-4" name="bx:bxl-gmail" />
-         Envianos un Correo
+        <Icon class="text-black w-4 h-4" name={heroContent.secondaryCta.icon} />
+         {heroContent.secondaryCta.label}
       </Link>
     </div>
   </div>

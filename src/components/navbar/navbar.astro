@@ -1,44 +1,9 @@
 ---
 import Container from "@components/container.astro";
-import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
+import { navigationItems } from "@data/navigation";
+import { siteConfig } from "@data/site";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
-
-const menuitems = [
-  {
-    title: "Servicios Web",
-    path: "#",
-    children: [
-      { title: "Sitios Web", path: "/", icon: "bx:bx-grid-horizontal", color: "bg-green-500"},
-      { title: "Sistemas y Aplicaciones Web", path: "#", icon: "bx:bxs-window-alt", color: "bg-blue-500" },
-      { title: "Seo y Rendimiento", path: "#", icon: "bx:bx-bar-chart-alt", color: "bg-red-500" },
-      { title: "Correo Corporativo", path: "/404", icon: "bx:bx-box", color: "bg-black" },
-      { title: "Proyectos MVP", path: "/404", icon: "bx:bx-store", color: "bg-yellow-500" },
-    ],
-  },
-  {
-    title: "Precios",
-    path: "/pricing",
-  },
-  {
-    title: "Sobre Nosotros",
-    path: "/about",
-  },
-  {
-    title: "Blog",
-    badge: true,
-    path: "/blog",
-  },
-  {
-    title: "Contáctanos",
-    path: "/contact",
-  },
-  // {
-  //   title: "Asesoramiento",
-  //   badge: true,
-  //   path: "https://astroship-pro.web3templates.com/",
-  // },
-];
 ---
 
 <Container>
@@ -46,8 +11,8 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Raicode </span><span
-            class="text-slate-500">Essentials</span
+          ><span class="font-bold text-slate-800">{siteConfig.brand.name} </span><span
+            class="text-slate-500">{siteConfig.brand.suffix}</span
           >
         </a>
         <div class="block lg:hidden">
@@ -57,13 +22,13 @@ const menuitems = [
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
           {
-            menuitems.map((item, index) => (
+            navigationItems.map((item, index) => (
               <>
                 {item.children && (
                   <Dropdown
                     title={item.title}
                     children={item.children}
-                    lastItem={index === menuitems.length - 1}
+                    lastItem={index === navigationItems.length - 1}
                   />
                 )}
 
