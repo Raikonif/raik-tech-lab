@@ -6,34 +6,47 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import { getFormattedDate } from "@utils/all";
 import { isPublished, sortByPublishDateDesc } from "@utils/content";
+import { locales, type Locale, withLocalePath } from "@i18n/config";
 
-// Filter blog entries with 'draft: false' & date before current date
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
   return isPublished(data.publishDate, data.draft);
 });
 
-// Sort content entries by publication date
 sortByPublishDateDesc(publishedBlogEntries);
 ---
 
 <Layout
+  lang={lang}
   title="Blog"
-  description="Guias y estrategias de desarrollo, automatizacion e innovacion digital para crecer con tecnologia en Latinoamerica."
-  openGraphTitle="Blog de Tecnologia y Negocio | Raicode Latam"
+  description={
+    lang === "es"
+      ? "Guias y estrategias de desarrollo, automatizacion e innovacion digital para crecer con tecnologia en Latinoamerica."
+      : "Guides and strategies on development, automation, and digital innovation for growth in Latin America."
+  }
+  openGraphTitle={lang === "es" ? "Blog de Tecnologia y Negocio | RaiKode Solutions" : "Technology & Business Blog | RaiKode Solutions"}
 >
   <Container>
     <Sectionhead>
-      <Fragment slot="title">Nuestro Blog</Fragment>
+      <Fragment slot="title">{lang === "es" ? "Nuestro Blog" : "Our Blog"}</Fragment>
       <Fragment slot="desc">
-        Estrategias y tendencias para crecer con tecnologia en Latinoamerica.
+        {lang === "es"
+          ? "Estrategias y tendencias para crecer con tecnologia en Latinoamerica."
+          : "Strategies and trends to scale with technology in Latin America."}
       </Fragment>
     </Sectionhead>
+
     <main class="mt-16">
       <ul class="grid gap-16 max-w-4xl mx-auto">
         {
           publishedBlogEntries.map((blogPostEntry, index) => (
             <li>
-              <a href={`/blog/${blogPostEntry.id}`}>
+              <a href={`${withLocalePath(lang, "/blog")}/${blogPostEntry.id}`}>
                 <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
                   <Picture
                     src={blogPostEntry.data.image.src}
@@ -55,13 +68,9 @@ sortByPublishDateDesc(publishedBlogEntries);
                     </h2>
 
                     <div class="flex gap-2 mt-3">
-                      <span class="text-gray-400">
-                        {blogPostEntry.data.author}
-                      </span>
+                      <span class="text-gray-400">{blogPostEntry.data.author}</span>
                       <span class="text-gray-400">• </span>
-                      <time
-                        class="text-gray-400"
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
+                      <time class="text-gray-400" datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {getFormattedDate(blogPostEntry.data.publishDate)}
                       </time>
                     </div>

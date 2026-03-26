@@ -3,20 +3,44 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import PricingCard from "@components/pricing.astro";
-import { pricingPlans } from "@data/pricing";
+import { getPricingCategories } from "@data/pricing";
+
+const pricingCategories = getPricingCategories("es");
 ---
 
-<Layout title="Pricing">
+<Layout
+  title="Precios"
+  description="Planes en USD por categoria: landing pages, sistemas pequenos y medianos, ERP/CRM y automatizacion con IA mensual."
+  openGraphTitle="Precios de Servicios Digitales | Raicode Latam"
+>
   <Container>
     <Sectionhead>
       <Fragment slot="title">Precios</Fragment>
       <Fragment slot="desc">
-        Precios simples y predecible.
+        Planes organizados por categoria para que compares alcance, nivel tecnico y tipo de pago.
       </Fragment>
     </Sectionhead>
 
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
-      {pricingPlans.map((item) => <PricingCard plan={item} />)}
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white/80 p-5 md:p-6 shadow-sm animate-soft-appear soft-transition">
+      <p class="text-sm text-slate-700">
+        <strong>Como leer los planes:</strong> los planes con "Pago unico" son desarrollo e implementacion.
+        Los planes con "Pago mensual recurrente" o "Implementacion + mensual" incluyen operacion,
+        soporte continuo o consumo periodico, especialmente en IA y automatizacion.
+      </p>
     </div>
+
+    {
+      pricingCategories.map((category) => (
+        <section class="mt-14 animate-soft-appear-delay-1" id={category.id}>
+          <div class="max-w-3xl">
+            <h2 class="text-3xl font-bold text-slate-900">{category.title}</h2>
+            <p class="mt-2 text-slate-600">{category.description}</p>
+          </div>
+          <div class="grid items-stretch md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 mx-auto mt-8">
+            {category.plans.map((item) => <PricingCard plan={item} />)}
+          </div>
+        </section>
+      ))
+    }
   </Container>
 </Layout>

@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+import {
+  getDeliveryModel,
+  getOpportunityPoints,
+  getOpportunitySection,
+} from "@data/home";
+import type { Locale } from "@i18n/config";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "es" } = Astro.props;
+const deliveryModel = getDeliveryModel(lang);
+const opportunityPoints = getOpportunityPoints(lang);
+const opportunitySection = getOpportunitySection(lang);
+---
+
+<section class="mt-24">
+  <div class="rounded-2xl bg-slate-900 px-6 py-10 md:px-10 md:py-14 text-white">
+    <h2 class="text-3xl md:text-4xl font-bold">{opportunitySection.title}</h2>
+    <p class="mt-4 text-slate-300 text-lg max-w-3xl">
+      {opportunitySection.description}
+    </p>
+
+    <ul class="mt-8 grid md:grid-cols-2 gap-4">
+      {
+        opportunityPoints.map((point) => (
+          <li class="flex gap-3 rounded-lg bg-slate-800/70 border border-slate-700 p-4">
+            <span class="mt-1">
+              <Icon name="bx:bxs-check-circle" class="h-5 w-5 text-emerald-400" />
+            </span>
+            <span class="text-slate-200">{point}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="mt-12">
+    <h3 class="text-3xl font-bold">{lang === "es" ? "Como trabajamos" : "How we work"}</h3>
+    <div class="grid md:grid-cols-3 gap-6 mt-6">
+      {
+        deliveryModel.map((step, index) => (
+          <article class="rounded-xl border border-slate-200 p-6 bg-white">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-white text-sm font-bold">
+              {index + 1}
+            </span>
+            <h4 class="mt-4 text-xl font-semibold text-slate-900">{step.title}</h4>
+            <p class="mt-2 text-slate-600">{step.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

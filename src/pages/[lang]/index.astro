@@ -1,0 +1,39 @@
+---
+import Container from "@components/container.astro";
+import Cta from "@components/cta.astro";
+import Features from "@components/features.astro";
+import Hero from "@components/hero.astro";
+import Logos from "@components/logos.astro";
+import MarketOpportunity from "@components/marketopportunity.astro";
+import Layout from "@layouts/Layout.astro";
+import { locales, type Locale } from "@i18n/config";
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+---
+
+<Layout
+  lang={lang}
+  title={lang === "es" ? "Inicio" : "Home"}
+  description={
+    lang === "es"
+      ? "Desarrollo web, sistemas internos, e-commerce, ERP/CRM y automatizacion con IA para empresas en Latinoamerica."
+      : "Web development, internal systems, e-commerce, ERP/CRM, and AI automation services for companies in Latin America."
+  }
+  openGraphTitle={
+    lang === "es"
+      ? "RaiKode Solutions | Servicios de desarrollo y automatizacion"
+      : "RaiKode Solutions | Development and automation services"
+  }
+>
+  <Container>
+    <Hero lang={lang} />
+    <MarketOpportunity lang={lang} />
+    <Features lang={lang} />
+    <Logos lang={lang} />
+    <Cta lang={lang} />
+  </Container>
+</Layout>

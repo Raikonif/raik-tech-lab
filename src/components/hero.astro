@@ -2,8 +2,17 @@
 import { Picture } from "astro:assets";
 import heroImage from "assets/hero-alt2.png";
 import Link from "@components/ui/link.astro";
-import { heroContent } from "@data/home";
+import { getHeroContent, getMarketHighlights } from "@data/home";
+import type { Locale } from "@i18n/config";
 import { Icon } from "astro-icon/components";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "es" } = Astro.props;
+const heroContent = getHeroContent(lang);
+const marketHighlights = getMarketHighlights(lang);
 ---
 
 <main
@@ -19,17 +28,29 @@ import { Icon } from "astro-icon/components";
     />
   </div>
   <div>
+    <span class="inline-flex items-center rounded-full bg-slate-100 px-4 py-1.5 text-sm font-medium text-slate-700">
+      {heroContent.badge}
+    </span>
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      class="mt-4 text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
       {heroContent.title}
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
       {heroContent.description}
     </p>
+    <div class="mt-6 grid grid-cols-2 gap-3 max-w-2xl">
+      {
+        marketHighlights.map((item) => (
+          <div class="rounded-lg border border-slate-200 bg-white px-4 py-3">
+            <p class="text-2xl font-bold text-slate-900">{item.value}</p>
+            <p class="text-sm text-slate-600 mt-1">{item.label}</p>
+          </div>
+        ))
+      }
+    </div>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
         href={heroContent.primaryCta.href}
-        target="_blank"
         class="flex gap-1 items-center justify-center"
         rel="noopener">
         <Icon class="text-white w-5 h-5" name={heroContent.primaryCta.icon} />
@@ -41,8 +62,7 @@ import { Icon } from "astro-icon/components";
         style="outline"
         rel="noopener"
         href={heroContent.secondaryCta.href}
-        class="flex gap-1 items-center justify-center"
-        target="_blank">
+        class="flex gap-1 items-center justify-center">
         <Icon class="text-black w-4 h-4" name={heroContent.secondaryCta.icon} />
          {heroContent.secondaryCta.label}
       </Link>

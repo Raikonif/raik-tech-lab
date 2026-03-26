@@ -1,7 +1,15 @@
 ---
 // @ts-ignore
 import { Icon } from "astro-icon/components";
-import { logoSectionTitle, technologyIcons } from "@data/home";
+import { getLogoSectionTitle, technologyIcons } from "@data/home";
+import type { Locale } from "@i18n/config";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "es" } = Astro.props;
+const logoSectionTitle = getLogoSectionTitle(lang);
 ---
 
 <div class="mt-24">

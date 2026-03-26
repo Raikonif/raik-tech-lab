@@ -1,0 +1,79 @@
+---
+import Container from "@components/container.astro";
+import Layout from "@layouts/Layout.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import { getFeatures } from "@data/home";
+
+const features = getFeatures("es");
+
+const serviceAnchors = [
+  "digitalizacion",
+  "ecommerce",
+  "mvp",
+  "ia",
+  "fintech",
+];
+---
+
+<Layout
+  title="Servicios"
+  description="Conoce nuestros servicios de landing pages, sistemas personalizados, ERP/CRM y automatizacion con IA para escalar operaciones."
+  openGraphTitle="Servicios de Software | Raicode Latam"
+>
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Servicios para empresas y startups en Latinoamerica</Fragment>
+      <Fragment slot="desc">
+        Diseñamos software con foco en retorno de inversion: menos trabajo manual,
+        mas ventas y mejor control operativo.
+      </Fragment>
+    </Sectionhead>
+
+    <section class="mt-14 grid gap-6">
+      {
+        features.map((service, index) => (
+          <article
+            id={serviceAnchors[index]}
+            class="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm">
+            <div class="flex items-start gap-4">
+              <div class={`${service.color} mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full`}>
+                <Icon class="h-6 w-6 text-white" name={service.icon} />
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900">{service.title}</h2>
+                <p class="mt-2 text-lg text-slate-600">{service.description}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <section class="mt-14 rounded-2xl bg-slate-900 p-8 md:p-10 text-white">
+      <h2 class="text-3xl md:text-4xl font-bold">Resultados que priorizamos</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-4">
+        <div class="rounded-lg border border-slate-700 bg-slate-800/60 p-4">
+          <h3 class="text-xl font-semibold">Velocidad comercial</h3>
+          <p class="mt-2 text-slate-300">Reducimos el tiempo entre primer contacto y venta.</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-800/60 p-4">
+          <h3 class="text-xl font-semibold">Control operativo</h3>
+          <p class="mt-2 text-slate-300">Centralizamos datos para decidir con informacion real.</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-800/60 p-4">
+          <h3 class="text-xl font-semibold">Escalabilidad</h3>
+          <p class="mt-2 text-slate-300">Construimos una base tecnica lista para crecimiento sostenido.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <Link href="/contact" style="inverted">Solicitar propuesta</Link>
+        <Link href="/market-latam" style="outline" class="!border-white !text-white hover:!bg-slate-700">
+          Ver contexto de mercado
+        </Link>
+      </div>
+    </section>
+  </Container>
+</Layout>

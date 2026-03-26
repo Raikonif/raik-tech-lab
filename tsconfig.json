@@ -9,6 +9,7 @@
       "@lib/*": ["lib/*"],
       "@utils/*": ["utils/*"],
       "@data/*": ["data/*"],
+      "@i18n/*": ["i18n/*"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],

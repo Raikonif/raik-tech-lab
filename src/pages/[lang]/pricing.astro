@@ -1,0 +1,69 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import PricingCard from "@components/pricing.astro";
+import { getPricingCategories } from "@data/pricing";
+import { locales, type Locale } from "@i18n/config";
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const pricingCategories = getPricingCategories(lang);
+---
+
+<Layout
+  lang={lang}
+  title={lang === "es" ? "Precios" : "Pricing"}
+  description={
+    lang === "es"
+      ? "Planes en USD por categoria: landing pages, sistemas pequenos y medianos, ERP/CRM y automatizacion con IA mensual."
+      : "USD plans by category: landing pages, small and medium systems, ERP/CRM, and monthly AI automation."
+  }
+  openGraphTitle={lang === "es" ? "Precios de Servicios Digitales | RaiKode Solutions" : "Digital Service Pricing | RaiKode Solutions"}
+>
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{lang === "es" ? "Precios" : "Pricing"}</Fragment>
+      <Fragment slot="desc">
+        {lang === "es"
+          ? "Planes organizados por categoria para que compares alcance, nivel tecnico y tipo de pago."
+          : "Category-based plans so you can compare scope, technical depth, and billing model."}
+      </Fragment>
+    </Sectionhead>
+
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white/80 p-5 md:p-6 shadow-sm animate-soft-appear soft-transition">
+      <p class="text-sm text-slate-700">
+        {lang === "es" ? (
+          <>
+            <strong>Como leer los planes:</strong> los planes con "Pago unico" son desarrollo e implementacion.
+            Los planes con "Pago mensual recurrente" o "Implementacion + mensual" incluyen operacion,
+            soporte continuo o consumo periodico, especialmente en IA y automatizacion.
+          </>
+        ) : (
+          <>
+            <strong>How to read the plans:</strong> "One-time payment" plans include build and launch.
+            "Recurring monthly" or "Implementation + monthly" plans include ongoing operations,
+            support, and continuous usage, especially for AI and automation.
+          </>
+        )}
+      </p>
+    </div>
+
+    {
+      pricingCategories.map((category) => (
+        <section class="mt-14 animate-soft-appear-delay-1" id={category.id}>
+          <div class="max-w-3xl">
+            <h2 class="text-3xl font-bold text-slate-900">{category.title}</h2>
+            <p class="mt-2 text-slate-600">{category.description}</p>
+          </div>
+          <div class="grid items-stretch md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 mx-auto mt-8">
+            {category.plans.map((item) => <PricingCard plan={item} />)}
+          </div>
+        </section>
+      ))
+    }
+  </Container>
+</Layout>

@@ -5,37 +5,52 @@ import Link from "@components/ui/link.astro";
 const { plan } = Astro.props;
 ---
 
-<div>
+<article class="h-full animate-soft-appear">
   <div
-    class="flex flex-col w-full order-first lg:order-none border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
-    <div class="text-center">
-      <h4 class="text-lg font-medium text-gray-400">{plan.name}</h4>
-      <h5 class="text-lg font-medium text-gray-400">{plan.from}</h5>
-      <p
-        class="mt-3 text-4xl font-bold text-black md:text-4xl">
-        {
-          plan.price && typeof plan.price === "object"
-            ? plan.price.monthly
-            : plan.price
-        }
+    class:list={[
+      "flex h-full min-h-[38rem] flex-col justify-between w-full border-2 py-6 px-6 rounded-2xl bg-white/95 shadow-sm soft-transition hover:-translate-y-1 hover:shadow-xl",
+      plan.popular ? "border-slate-900" : "border-[#D8DEE9] border-opacity-70",
+    ]}>
+    <div class="text-center min-h-56">
+      <h4 class="text-xl font-semibold text-slate-800">{plan.name}</h4>
+      <h5 class="text-sm font-medium text-slate-500 mt-2">{plan.from}</h5>
+      <p class="mt-3 text-4xl font-bold text-black md:text-4xl">
+        {plan.price && typeof plan.price === "object" ? plan.price.monthly : plan.price}
       </p>
-      <!-- {
-        plan.price.original && (
-          <p class="mt-1 text-xl font-medium text-gray-400 line-through md:text-2xl">
-            {plan.price.original}
+      {
+        plan.billingLabel && (
+          <p
+            class:list={[
+              "mt-3 inline-flex rounded-full px-3 py-1 text-xs font-semibold",
+              plan.popular
+                ? "bg-slate-900 text-white"
+                : "bg-slate-100 text-slate-700",
+            ]}>
+            {plan.billingLabel}
           </p>
         )
-      } -->
-    </div><ul class="grid mt-8 text-left gap-y-4">
+      }
+      <div class="mt-3 min-h-16">
+        {
+          plan.extraNote && (
+            <p class="text-sm leading-relaxed text-slate-500">{plan.extraNote}</p>
+          )
+        }
+      </div>
+    </div>
+
+    <ul class="grid mt-6 text-left gap-y-3 grow">
       {
         plan.features.map((item) => (
-          <li class="flex items-start gap-3 text-gray-800">
-            <Tick class="w-6 h-6" />
+          <li class="flex items-start gap-3 text-slate-700">
+            <Tick class="w-5 h-5 mt-0.5" />
             <span>{item}</span>
           </li>
         ))
       }
-    </ul><div class="flex mt-8">
+    </ul>
+
+    <div class="flex mt-8">
       <Link
         href={plan.button.link || "#"}
         block
@@ -44,4 +59,4 @@ const { plan } = Astro.props;
       </Link>
     </div>
   </div>
-</div>
+</article>

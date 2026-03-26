@@ -1,64 +1,215 @@
-export const heroContent = {
-  title: "Desarrollo de Sitios y Aplicaciones Web a Personalizado",
-  description:
-    "Utilizamos las tecnologias mas modernas para el desarrollo del producto. para la mejor experiencia del usuario, procurando el SEO y plasmando la marca del producto en el diseño. Asesorandonte en todo lo necesario para hacer despegar tu emprendimiento Web al siguiente nivel.",
-  primaryCta: {
-    label: "Descargar Catálogo",
-    href: "https://web3templates.com/templates/astroship-starter-website-template-for-astro",
-    icon: "bx:bxs-cloud-download",
+import type { Locale } from "@i18n/config";
+import { withLocalePath } from "@i18n/config";
+
+const content = {
+  es: {
+    heroContent: {
+      title:
+        "Impulsamos negocios en Latinoamerica con tecnologia que vende y escala.",
+      description:
+        "El mercado tecnologico regional esta creciendo, pero muchas empresas aun operan con procesos manuales. Creamos sistemas internos, e-commerce, MVPs y automatizaciones para transformar operaciones en resultados medibles.",
+      primaryCta: {
+        label: "Solicitar diagnostico",
+        icon: "bx:bx-line-chart",
+      },
+      secondaryCta: {
+        label: "Ver servicios",
+        icon: "bx:bx-briefcase-alt-2",
+      },
+      badge: "Soluciones de software para empresas y startups en Latinoamerica",
+    },
+    marketHighlights: [
+      { value: "+15%", label: "Crecimiento anual del sector tech" },
+      { value: "+20%", label: "Incremento estimado en demanda de software" },
+      {
+        value: "200+",
+        label: "Empresas de software activas en mercados regionales",
+      },
+      { value: "150+", label: "Startups tecnologicas activas" },
+    ],
+    featuresSection: {
+      title: "Servicios de mayor demanda en el mercado regional",
+      description:
+        "Diseñamos soluciones enfocadas en sectores donde ya existe necesidad real, presupuesto y urgencia por digitalizar.",
+    },
+    features: [
+      {
+        title: "Digitalizacion de negocios tradicionales",
+        description:
+          "Reemplazamos Excel, procesos manuales y operaciones por WhatsApp con sistemas internos, paneles administrativos, inventario, facturacion y CRM.",
+        icon: "bx:bx-buildings",
+        color: "bg-green-500",
+      },
+      {
+        title: "E-commerce y pagos digitales",
+        description:
+          "Construimos tiendas online, integraciones de pago, gestion de pedidos y embudos de conversion para negocios que aun no venden en serio por internet.",
+        icon: "bx:bx-cart-alt",
+        color: "bg-blue-500",
+      },
+      {
+        title: "MVPs y plataformas para startups",
+        description:
+          "Lanzamos productos minimos viables en semanas, con arquitectura escalable para validar mercado y crecer sin rehacer todo desde cero.",
+        icon: "bx:bx-rocket",
+        color: "bg-red-500",
+      },
+      {
+        title: "Automatizacion y soluciones con IA",
+        description:
+          "Creamos chatbots, flujos inteligentes, recomendaciones y automatizaciones de datos para equipos que quieren producir mas con menos friccion.",
+        icon: "bx:bx-bot",
+        color: "bg-black",
+      },
+      {
+        title: "Fintech y sistemas financieros",
+        description:
+          "Desarrollamos billeteras, dashboards financieros y experiencias de pago claras para competir frente a la banca tradicional.",
+        icon: "bx:bx-wallet",
+        color: "bg-yellow-500",
+      },
+    ],
+    opportunitySection: {
+      title: "Por que este es el momento ideal en Latinoamerica",
+      description:
+        "El mercado no esta saturado, los competidores tradicionales aun son lentos y las empresas que digitalizan temprano se quedan con la mayor ventaja.",
+    },
+    opportunityPoints: [
+      "La demanda crece mas rapido que la oferta especializada en software de calidad.",
+      "La mayoria de negocios sigue operando con procesos manuales y poco control de datos.",
+      "La adopcion de pagos digitales y fintech acelera nuevos modelos de ingreso.",
+      "Las startups locales necesitan equipos tecnicos que lancen MVPs de forma rapida y estable.",
+    ],
+    deliveryModel: [
+      {
+        title: "Diagnostico de operacion",
+        description:
+          "Auditamos procesos, cuellos de botella y oportunidades de automatizacion con impacto economico.",
+      },
+      {
+        title: "Roadmap y prototipo",
+        description:
+          "Definimos prioridades, alcance y una primera version orientada a resultados medibles.",
+      },
+      {
+        title: "Implementacion y crecimiento",
+        description:
+          "Desplegamos, capacitamos al equipo y evolucionamos la plataforma por etapas.",
+      },
+    ],
+    logoSectionTitle:
+      "Stack moderno para lanzar rapido y escalar con seguridad",
+    ctaContent: {
+      title: "Convirtamos tu operacion manual en una maquina digital.",
+      description:
+        "Agenda una reunion y te mostramos en que area de tu negocio tienes el retorno mas rapido con tecnologia.",
+      actionLabel: "Hablar con un especialista",
+    },
   },
-  secondaryCta: {
-    label: "Envianos un Correo",
-    href: "https://github.com/surjithctly/astroship",
-    icon: "bx:bxl-gmail",
+  en: {
+    heroContent: {
+      title:
+        "We help businesses across Latin America scale with technology that sells.",
+      description:
+        "Regional demand for software is growing fast, but many companies still rely on manual processes. We build internal systems, e-commerce platforms, MVPs, and AI automations with measurable impact.",
+      primaryCta: {
+        label: "Request assessment",
+        icon: "bx:bx-line-chart",
+      },
+      secondaryCta: {
+        label: "View services",
+        icon: "bx:bx-briefcase-alt-2",
+      },
+      badge: "Software solutions for companies and startups in Latin America",
+    },
+    marketHighlights: [
+      { value: "+15%", label: "Annual growth in the tech sector" },
+      { value: "+20%", label: "Estimated increase in software demand" },
+      {
+        value: "200+",
+        label: "Software companies active across regional markets",
+      },
+      { value: "150+", label: "Active technology startups" },
+    ],
+    featuresSection: {
+      title: "Most demanded digital services in the regional market",
+      description:
+        "We design solutions for business areas with immediate demand, clear ROI, and urgent digitization needs.",
+    },
+    features: [
+      {
+        title: "Traditional business digitization",
+        description:
+          "We replace spreadsheets, manual tasks, and chat-based operations with internal systems, admin dashboards, inventory, invoicing, and CRM.",
+        icon: "bx:bx-buildings",
+        color: "bg-green-500",
+      },
+      {
+        title: "E-commerce and digital payments",
+        description:
+          "We build online stores, payment integrations, order management, and conversion-focused funnels for businesses moving online.",
+        icon: "bx:bx-cart-alt",
+        color: "bg-blue-500",
+      },
+      {
+        title: "MVPs and startup platforms",
+        description:
+          "We launch MVPs quickly with scalable architecture so teams can validate market traction before scaling.",
+        icon: "bx:bx-rocket",
+        color: "bg-red-500",
+      },
+      {
+        title: "AI automation solutions",
+        description:
+          "We develop chatbots, intelligent workflows, recommendations, and data automations that reduce operational friction.",
+        icon: "bx:bx-bot",
+        color: "bg-black",
+      },
+      {
+        title: "Fintech and financial systems",
+        description:
+          "We build wallets, financial dashboards, and payment experiences designed for clarity, scale, and trust.",
+        icon: "bx:bx-wallet",
+        color: "bg-yellow-500",
+      },
+    ],
+    opportunitySection: {
+      title: "Why this is the right time in Latin America",
+      description:
+        "The market is growing, competition is still fragmented, and early digitizers capture long-term operational advantage.",
+    },
+    opportunityPoints: [
+      "Demand is growing faster than high-quality software delivery capacity.",
+      "Many businesses still run critical operations with low process visibility.",
+      "Digital payments and fintech adoption are opening new revenue models.",
+      "Local startups need fast and stable MVP execution partners.",
+    ],
+    deliveryModel: [
+      {
+        title: "Operational diagnosis",
+        description:
+          "We audit bottlenecks, workflows, and automation opportunities with measurable business impact.",
+      },
+      {
+        title: "Roadmap and prototype",
+        description:
+          "We define priorities and scope, then launch a first version focused on clear business outcomes.",
+      },
+      {
+        title: "Implementation and growth",
+        description:
+          "We deploy, onboard your team, and evolve the platform through phased iterations.",
+      },
+    ],
+    logoSectionTitle: "Modern stack to launch faster and scale safely",
+    ctaContent: {
+      title: "Turn manual operations into a digital growth engine.",
+      description:
+        "Book a call and we will identify where technology can deliver your fastest return.",
+      actionLabel: "Talk to a specialist",
+    },
   },
 } as const;
-
-export const featuresSection = {
-  title: "Soluciones profesionales personalizadas.",
-  description:
-    "Brindamos servicios esenciales para el emprendimiento que requieras y como lo requieras.",
-} as const;
-
-export const features = [
-  {
-    title: "Sitios Web (Landing Pages)",
-    description:
-      "Sitios totalmente SEO Friendly para la indexación eficiente de tu negocio digital.",
-    icon: "bx:bx-grid-horizontal",
-    color: "bg-green-500",
-  },
-  {
-    title: "Aplicaciones y Sistemas Web",
-    description:
-      "Para los emprendimientos que requieran de una mayor complejidad y desarrollo de sus sitios web y aplicaciones web personalizadas con el proposito que el cliente lo requiera.",
-    icon: "bx:bxs-window-alt",
-    color: "bg-blue-500",
-  },
-  {
-    title: "SEO y rendimiento",
-    description:
-      "Mejoramiento, asesoramiento para la mejor eficiencia del SEO y la Exeperiencia de Usuario para el uso de la pagina o plataforma de tu negocio digital. Mapeo automatico del Sitio, Paginación, Colecciones y mas.",
-    icon: "bx:bx-bar-chart-alt",
-    color: "bg-red-500",
-  },
-  {
-    title: "Correos Corporativos",
-    description:
-      "Correos corporativos para darle la relevancia y seriedad profesional a tu Emprendimiento Digital.",
-    icon: "bx:bx-box",
-    color: "bg-black",
-  },
-  {
-    title: "Proyectos MVP",
-    description:
-      "Creamos proyectos agiles para la su despliegue y retroalimentación rápida y real.",
-    icon: "bx:bx-store",
-    color: "bg-yellow-500",
-  },
-] as const;
-
-export const logoSectionTitle = "Tecnologias con las cuales trabajamos";
 
 export const technologyIcons = [
   {
@@ -95,11 +246,55 @@ export const technologyIcons = [
   },
 ] as const;
 
-export const ctaContent = {
-  title: "Construye con nosotros.",
-  description: "Creación aplicaciones y sitios eficientes y escalables.",
-  action: {
-    label: "Comenzar",
-    href: "#",
-  },
-} as const;
+export function getHeroContent(lang: Locale) {
+  return {
+    ...content[lang].heroContent,
+    primaryCta: {
+      ...content[lang].heroContent.primaryCta,
+      href: withLocalePath(lang, "/contact"),
+    },
+    secondaryCta: {
+      ...content[lang].heroContent.secondaryCta,
+      href: withLocalePath(lang, "/services"),
+    },
+  };
+}
+
+export function getMarketHighlights(lang: Locale) {
+  return content[lang].marketHighlights;
+}
+
+export function getFeaturesSection(lang: Locale) {
+  return content[lang].featuresSection;
+}
+
+export function getFeatures(lang: Locale) {
+  return content[lang].features;
+}
+
+export function getOpportunitySection(lang: Locale) {
+  return content[lang].opportunitySection;
+}
+
+export function getOpportunityPoints(lang: Locale) {
+  return content[lang].opportunityPoints;
+}
+
+export function getDeliveryModel(lang: Locale) {
+  return content[lang].deliveryModel;
+}
+
+export function getLogoSectionTitle(lang: Locale) {
+  return content[lang].logoSectionTitle;
+}
+
+export function getCtaContent(lang: Locale) {
+  return {
+    title: content[lang].ctaContent.title,
+    description: content[lang].ctaContent.description,
+    action: {
+      label: content[lang].ctaContent.actionLabel,
+      href: withLocalePath(lang, "/contact"),
+    },
+  };
+}

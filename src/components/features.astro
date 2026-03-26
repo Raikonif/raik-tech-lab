@@ -1,8 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Picture } from "astro:assets";
-import image_style from "assets/hero.png";
-import { features, featuresSection } from "@data/home";
+import { getFeatures, getFeaturesSection } from "@data/home";
+import type { Locale } from "@i18n/config";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "es" } = Astro.props;
+const features = getFeatures(lang);
+const featuresSection = getFeaturesSection(lang);
 ---
 
 <div class="mt-16 md:mt-0">
@@ -16,27 +23,24 @@ import { features, featuresSection } from "@data/home";
 
 <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
   {
-    features.map((item) => (
-      <div class="flex flex-col gap-4 items-start rounded-lg p-3 md:p-4">
-        <Picture
-      src={image_style}
-      alt="Astronaut in the air"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 800px) 100vw, 620px"
-      loading="eager"
-      format="avif"
-      class="animate-fade-in-up"
-    />
-    <div class="flex gap-4 items-start hover:bg-gray-100 rounded-lg p-3 md:p-4">
-        <div class={`${item.color} flex mt-1 rounded-full items-center justify-center p-2 w-8 h-8 md:h-16 md:w-16 shrink-0`}>
-          <Icon class="text-white md:h-10 md:w-10" name={item.icon} />
+    features.map((item, index) => (
+      <article
+        id={[
+          "digitalizacion",
+          "ecommerce",
+          "mvp",
+          "ia",
+          "fintech",
+        ][index]}
+        class="flex gap-4 items-start rounded-xl border border-slate-200 p-5 transition hover:-translate-y-1 hover:shadow-lg bg-white">
+        <div class={`${item.color} flex mt-1 rounded-full items-center justify-center p-2 w-12 h-12 shrink-0`}>
+          <Icon class="text-white h-6 w-6" name={item.icon} />
         </div>
         <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <h3 class="font-semibold text-lg">{item.title}</h3>
           <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
         </div>
-      </div>
-      </div>
+      </article>
     ))
   }
 </div>

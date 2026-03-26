@@ -3,25 +3,27 @@ import { getCollection, render } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
+import { locales, type Locale, withLocalePath } from "@i18n/config";
 
-// Generate a new path for every collection entry
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+  return locales.flatMap((lang) =>
+    blogEntries.map((entry) => ({
+      params: { lang, slug: entry.id },
+      props: { entry, lang },
+    }))
+  );
 }
 
-// Get the entry directly from the prop on render
-const { entry } = Astro.props;
+const { entry, lang } = Astro.props as { entry: any; lang: Locale };
 const { Content } = await render(entry);
 ---
 
 <Layout
+  lang={lang}
   title={entry.data.title}
   description={entry.data.snippet}
-  openGraphTitle={`${entry.data.title} | Blog Raicode Latam`}
+  openGraphTitle={`${entry.data.title} | Blog RaiKode Solutions`}
   openGraphType="article"
 >
   <Container>
@@ -29,26 +31,19 @@ const { Content } = await render(entry);
       <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
         {entry.data.category}
       </span>
-      <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+      <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
         {entry.data.title}
       </h1>
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
-          {entry.data.author}
-        </span>
+        <span class="text-gray-400">{entry.data.author}</span>
         <span class="text-gray-400">•</span>
-        <time
-          class="text-gray-400"
-          datetime={entry.data.publishDate.toISOString()}>
+        <time class="text-gray-400" datetime={entry.data.publishDate.toISOString()}>
           {getFormattedDate(entry.data.publishDate)}
         </time>
         <span class="text-gray-400 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
-            entry.data.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
+            entry.data.tags.map((tag: string) => <span class="text-sm text-gray-500">#{tag}</span>)
           }
         </div>
       </div>
@@ -58,11 +53,9 @@ const { Content } = await render(entry);
       <Content />
     </div>
     <div class="text-center mt-8">
-      <a
-        href="/blog"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
-        >← Volver al Blog</a
-      >
+      <a href={withLocalePath(lang, "/blog")} class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition">
+        {lang === "es" ? "← Volver al Blog" : "← Back to Blog"}
+      </a>
     </div>
   </Container>
 </Layout>

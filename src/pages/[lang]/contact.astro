@@ -4,20 +4,35 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import Layout from "@layouts/Layout.astro";
 import { getContactInfo } from "@data/contact";
+import { locales, type Locale } from "@i18n/config";
 import { Icon } from "astro-icon/components";
 
-const contactInfo = getContactInfo("es");
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const contactInfo = getContactInfo(lang);
 ---
 
 <Layout
-  title="Contacto"
-  description="Agenda una reunion para evaluar tu proyecto digital y recibir una propuesta de desarrollo, automatizacion o integracion."
-  openGraphTitle="Contacto | Raicode Latam"
+  lang={lang}
+  title={lang === "es" ? "Contacto" : "Contact"}
+  description={
+    lang === "es"
+      ? "Agenda una reunion para evaluar tu proyecto digital y recibir una propuesta de desarrollo, automatizacion o integracion."
+      : "Book a call to review your digital project and get a proposal for development, automation, or integrations."
+  }
+  openGraphTitle={lang === "es" ? "Contacto | RaiKode Solutions" : "Contact | RaiKode Solutions"}
 >
   <Container>
     <Sectionhead>
-      <Fragment slot="title">Conversemos sobre tu crecimiento digital</Fragment>
-      <Fragment slot="desc">Respondemos en menos de 24 horas habiles.</Fragment>
+      <Fragment slot="title">
+        {lang === "es" ? "Conversemos sobre tu crecimiento digital" : "Let's talk about your digital growth"}
+      </Fragment>
+      <Fragment slot="desc">
+        {lang === "es" ? "Respondemos en menos de 24 horas habiles." : "We typically reply within 24 business hours."}
+      </Fragment>
     </Sectionhead>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
@@ -43,7 +58,7 @@ const contactInfo = getContactInfo("es");
         </div>
       </div>
       <div>
-        <Contactform lang="es" />
+        <Contactform lang={lang} />
       </div>
     </div>
   </Container>

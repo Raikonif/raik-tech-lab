@@ -12,21 +12,26 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
 });
 ---
 
-<Layout title="About">
+<Layout
+  title="Sobre Nosotros"
+  description="Somos un equipo de desarrollo y producto enfocado en crecimiento digital para empresas y startups de Latinoamerica."
+  openGraphTitle="Sobre Nosotros | Raicode Latam"
+>
   <Container>
     <Sectionhead>
-      <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc">We are a small passionate team.</Fragment>
+      <Fragment slot="title">Sobre Nosotros</Fragment>
+      <Fragment slot="desc">Equipo enfocado en crecimiento digital real para Latinoamerica.</Fragment>
     </Sectionhead>
 
     <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
       <h2 class="font-bold text-3xl text-gray-800">
-        Empowering the world with Astro.
+        Construimos tecnologia que mejora ventas, operaciones y decisiones.
       </h2>
       <p class="text-lg leading-relaxed text-slate-500">
-        We're a multi-cultural team from around the world! We come from diverse
-        backgrounds, bringing different personalities, experiences and skills to
-        the job. This is what makes our team so special.
+        Trabajamos con empresas tradicionales, pymes y startups que quieren
+        digitalizarse sin perder meses en proyectos eternos. Combinamos estrategia
+        de negocio, producto y desarrollo para entregar soluciones utiles desde la
+        primera version.
       </p>
     </div>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
